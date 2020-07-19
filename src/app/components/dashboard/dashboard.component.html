@@ -1,0 +1,102 @@
+<div class="col-12 col-lg-4 profile">
+    <h6 class="heading pb-1">{{student.firstname}}'s Profile</h6>
+    <div class="card card-profile">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-4 offset-4">
+                    <img src="../../../../assets/images/lady-icon.png" class="img-fluid rounded-circle p-1">
+                </div>
+                <div class="col-12">
+                    <h5 class="username text-truncate text-center">{{student.firstname |titlecase}} {{student.lastname|titlecase}}</h5>
+                    <button class="btn btn-primary mr-3 mb-3 col-8 offset-2" (click)="showModalDialogRC()" *ngIf="true"  role="button">Register Courses</button>
+                </div>
+                <div class="col-12">
+                    <h5 class="username text-truncate text-center">{{student.firstname |titlecase}} {{student.lastname|titlecase}}</h5>
+                    <button class="btn btn-primary mr-3 mb-3 col-8 offset-2" (click)="showModalDialogEP()" *ngIf="true"  role="button">Edit Profile</button>
+                </div>
+            </div>
+                <div class="col-12 mt-3">
+                    <ul class="list-group list-group-flush p-2">
+                        <li class="list-group-item d-flex justify-content-between align-items-center card-text mb-2 font-weight-bold">
+                            {{student.firstname |titlecase}}
+                            <span class="badge badge-info badge-pill p-2" style="background-color: #17a2b8;">Firstname  </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center card-text mb-2 font-weight-bold">
+                            {{student.lastname |titlecase}}
+                            <span class="badge badge-info badge-pill p-2" style="background-color: #17a2b8;">Lastname</span>
+                            </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center card-text mb-2 font-weight-bold">
+                            {{student.matNo}}
+                            <span class="badge badge-info badge-pill p-2" style="background-color: #17a2b8;">Matric. Number</span>
+                        </li>
+                            
+                        <li class="list-group-item d-flex justify-content-between align-items-center card-text mb-2 font-weight-bold">
+                            {{student.level}}
+                            <span class="badge badge-info badge-pill p-2" style="background-color: #17a2b8;">Class</span>
+                        </li>
+                        <li *ngIf="student.department" class="list-group-item d-flex justify-content-between align-items-center card-text mb-2 font-weight-bold">
+                            {{student.department}}
+                            <span class="badge badge-info badge-pill p-2" style="background-color: #17a2b8;">Department</span>
+                        </li>
+                        <li *ngIf="student.faculty" class="list-group-item d-flex justify-content-between align-items-center card-text mb-2 font-weight-bold">
+                            {{student.faculty}}
+                            <span class="badge badge-info badge-pill p-2" style="background-color: #17a2b8;">Faculty</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center card-text mb-2 font-weight-bold">
+                            {{student.gender}}
+                            <span class="badge badge-info badge-pill p-2" style="background-color: #17a2b8;">Gender</span>
+                        </li>
+                        <li *ngFor="let course of student.courses" class="list-group-item d-flex justify-content-between align-items-center card-text mb-2 font-weight-bold">
+                            {{course.Name}} - {{course.creditUnit}} units
+                            <span class="badge badge-info badge-pill p-2" style="background-color: #17a2b8;">offered in {{course.faculty}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <p-dialog class="my-3 d-block d-lg-none" [(visible)]="displayModal1" [modal]="true" [style]="{width: '80vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+            <div class="card col-10 my-2 container mx-auto card-modal">
+                <div class="card-body">
+                    <div class="alert alert-info col-12"  *ngIf="editProfileForm.dirty">
+                        <strong>Information:</strong> You have made changes, any unsaved changes will be lost
+                    </div>
+                    <h5 class="card-title text-muted py-2">Edit your Profile</h5>
+                    <form class="col-12" #editForm [formGroup]="editProfileForm" autocomplete="off" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="level" class="col-sm-12 col-form-label" >Level</label>
+                            <input type="text" class="form-control col-12" id="editlevel" placeholder="" 
+                                formControlName="level" 
+                                [class.is-invalid]="editProfileForm.get('level').invalid && editProfileForm.get('level').touched">
+                            <div class="invalid-feedback">Please fill-out your current level</div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="faculty" class="col-12 col-form-label" >faculty</label>
+                            <input type="text" class="form-control col-12" id="editFaculty" placeholder=""
+                                formControlName="faculty"
+                                [class.is-invalid]="editProfileForm.get('faculty').invalid && editProfileForm.get('faculty').touched">
+                            <div class="invalid-feedback">Please fill-out your current faculty</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="department" class="col-12 col-form-label" >department</label>
+                            <input type="text" class="form-control col-12" id="editDepartment" placeholder=""
+                                formControlName="department"
+                                [class.is-invalid]="editProfileForm.get('department').invalid && editProfileForm.get('department').touched">
+                            <div class="invalid-feedback">Please fill-out your current department</div>
+                        </div>
+    
+                        <div class="form-group mx-auto pb-3">
+                            <button type="submit" class="col-sm-6 btn btn-primary btn-ghost" [disabled]="!editProfileForm.dirty">Save <i *ngIf="spin" class="fa fa-spinner fa-spin" style="font-size:24px"></i></button> 
+                            <!-- <span class="mt-2 pl-2"><a href="#"> Already have an account? Sign in</a></span> -->
+                        </div>
+                    </form>
+                </div>   
+            </div>
+            <p-footer>
+                <button type="button" class="btn btn-secondary"  (click)="displayModal1=false">Close</button>
+            </p-footer>
+        </p-dialog>
+    
+    </div>
