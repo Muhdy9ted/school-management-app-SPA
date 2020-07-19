@@ -1,0 +1,261 @@
+<header>
+    <nav class="navbar navbar-expand-md navbar-light navbar-fixed-top" id="nav">
+        <div class="container-fluid" [class.nav-white]="isCollapsed">
+            <a class="navbar-brand mr-auto" routerLink= "/"> 
+                <img src="\assets\images\logo.jpg" alt="Scholars University logo" [class.logo]="!isCollapsed" [class.logoCollapsed]="isCollapsed"> 
+            </a>
+            
+            <!-- testing purpose -->
+            <button type="button" class="badge">
+                <span class="text-white"> Notifications </span>
+            </button>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                [attr.aria-expanded]="!isCollapsed" (click)="isCollapsed = !isCollapsed"  
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color:#FFF;">
+                <span class="navbar-toggler-icon" style="text-decoration: none;"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" [collapse]="!isCollapsed" [isAnimated]="true">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link" routerLink = "/" [class.linkcolor]="isCollapsed">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link"  href="#" [class.linkcolor]="isCollapsed">
+                            Faculty
+                        </a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link"  href="#" [class.linkcolor]="isCollapsed">
+                            Administrative
+                        </a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link" [class.linkcolor]="isCollapsed"  href="#">
+                            Upcoming Events
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav d-flex justify-content-end">
+                    <a class="btn nav-link btn-primary"  *ngIf="isLoggedIn()" [class.btn-sm]="isCollapsed" [class.mr-1]="isCollapsed" role="button" [routerLink]="['/account']" routerLinkActive="router-link-active" > 
+                        Student Portal
+                    </a>
+                    <a class="btn nav-link btn-primary" *ngIf="!isLoggedIn()"  (click)="loggedOut()" [class.btn-sm]="isCollapsed" [class.mr-1]="isCollapsed" role="button" [routerLink]="['/account']" routerLinkActive="router-link-active" > 
+                        Sign Out
+                    </a>
+                   
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="hero-image-div" class="d-flex align-items-start">
+        <div class="bg-image overlay">                 
+            <div id="hero-image-contents">
+                <div class="container">
+                    <h1 class="display-4">Scholars University</h1>
+                    <p class="lead">
+                        Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="bg-secondary" id="info">
+    <div class="container">
+        <div class="row mt-5 p-3">
+            <div class="col-4 d-none d-md-block">
+                <img src="../../../assets/images/logan-isbell-F5b7_OD4IMA-unsplash.jpg" class="img-fluid" alt="graduate image">
+            </div>
+            <div class="col-12 col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"> Lorem ipsum dolor sit amet</h5>
+                        <p class="card-text pb-1">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+                            sunt in culpa qui officia deserunt mollit anim id est laborum.    
+                        </p>
+                        <h5 class="card-subtitle mb-2 text-muted pt-3"> Eiusmod tempor incididunt</h5>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+                            sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-secondary" id="courses">
+    <div class="container">
+        <div class="row mt-5 p-3">
+            <div class="col-12 mb-4 text-center">
+                <h2 class="text-body bg-white mx-auto p-3">Lorem ipsum dolor sit amet </h2>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-3">
+                    <img src="../../../assets/images/andrey-zvyagintsev-Eyg5Z7ARjWk-unsplash.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Lorem ipsum dolor</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+                    </p>
+                  <a href="#" class="btn btn-primary">More....</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-3">
+                    <img src="../../../assets/images/brooke-cagle-g1Kr4Ozfoac-unsplash.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Consectetur adipiscin</h5>
+
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+                    </p>
+                  <a href="#" class="btn btn-primary">More....</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-3">
+                    <img src="../../../assets/images/jodyhongfilms-sI1mbxJFFpU-unsplash.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"> Tempor incididunt </h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+                    </p>
+                  <a href="#" class="btn btn-primary">More....</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-3">
+                    <img src="../../../assets/images/juan-ramos-EWN0rrwbBIQ-unsplash.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Quis nostrud</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+                    </p>
+                  <a href="#" class="btn btn-primary">More....</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-3">
+                    <img src="../../../assets/images/marvin-meyer-SYTO3xs06fU-unsplash.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Laboris nisi ut</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+                    </p>
+                  <a href="#" class="btn btn-primary">More....</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-3">
+                    <img src="../../../assets/images/windows-p74ndnYWRY4-unsplash.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"> Dolore magna aliqua</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+                    </p>
+                  <a href="#" class="btn btn-primary">More....</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-3">
+                    <img src="../../../assets/images/andrey-zvyagintsev-Eyg5Z7ARjWk-unsplash.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Nostrud exercitation</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+                    </p>
+                  <a href="#" class="btn btn-primary">More....</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-3">
+                    <img src="../../../assets/images/logan-isbell-F5b7_OD4IMA-unsplash.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Minim venia</h5>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+                        </p>
+                      <a href="#" class="btn btn-primary">More....</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card mb-3">
+                    <img src="../../../assets/images/brooke-cagle-g1Kr4Ozfoac-unsplash.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Consectetur adipiscin</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+                    </p>
+                  <a href="#" class="btn btn-primary">More....</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-info w-80 mb-3 d-md-none">Tour our Faculties...</button>
+            <button type="button" class="btn btn-info w-50 mb-3 d-none d-md-block">Tour our Faculties...</button>
+        </div>
+    </div>
+</section>
+
+<section class="bg-dark mt-5" id="contact">
+    <div class="container text-white text-center py-5">
+        <a name="contact"><p class="lead text-uppercase">Contact School</p></a>
+        <div class="row justify-content-center">
+            <div class="col-10 col-sm-8 border border-info p-2 p-md-5">
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="your email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="write us"></textarea>
+                    </div>
+                    <div class="input-group append">
+                        <button class="btn btn-primary" disabled>Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>
