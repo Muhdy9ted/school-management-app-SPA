@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
+import {DialogModule} from 'primeng/dialog';
+
+
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
@@ -14,6 +18,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/account/register/register.component';
 import { LoginComponent } from './components/account/login/login.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { GetStudentProfileResolver } from './_shared/resolvers/getStudentProfileResolver';
+
+
+export function tokenGetter() {
+  console.log(localStorage.getItem('school_token'));
+  return (localStorage.getItem('school_token'));
+}
 
 @NgModule({
   declarations: [
@@ -24,7 +36,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     NavbarComponent,
     RegisterComponent,
     LoginComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -34,8 +47,16 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     CollapseModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
+    DialogModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        allowedDomains: ['localhost:50099'],
+        disallowedRoutes: ['http://localhost:50099/api/auth/']
+      }
+    }),
   ],
-  providers: [],
+  providers: [GetStudentProfileResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

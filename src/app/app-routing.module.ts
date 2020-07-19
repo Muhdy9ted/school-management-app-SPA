@@ -4,6 +4,9 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { AccountComponent } from './components/account/account.component';
 import { RegisterComponent } from './components/account/register/register.component';
 import { LoginComponent } from './components/account/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { GetStudentProfileResolver } from './_shared/resolvers/getStudentProfileResolver';
+import { AuthGuard } from './_shared/guards/auth.guard';
 
 
 const routes: Routes = [
@@ -12,7 +15,8 @@ const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent}
-  ]}
+  ]},
+  {path: 'dashboard/:id', component: DashboardComponent,  canActivate: [AuthGuard], resolve: {student: GetStudentProfileResolver}}
 ];
 
 @NgModule({

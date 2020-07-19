@@ -14,10 +14,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
 
   loginDto: LoginDto = new LoginDto();
-  userToken: any;
+  studentToken: any;
   decodedToken: any;
   baseURL = environment.apiUrl + 'auth/';
   jwtHelper = new JwtHelperService();
+  studentName: string;
+  studentId: any;
 
 
 
@@ -31,27 +33,19 @@ export class AuthService {
   login() {
     return  this.http.post(this.baseURL + 'login', this.loginDto).pipe(map((response: any) => {
       console.log(response);
-      const userResponse = response;
-      // if (userResponse) {
-      //   localStorage.setItem('preg_token', response.data.tokenData.token);
-      //   this.decodedToken = this.jwtHelper.decodeToken(response.data.tokenData.token);
-      //   const userEmail = this.decodedToken.email;
-      //   const pos = userEmail.indexOf('@');
-      //   this.userID = userEmail.substring(0, pos );
-      //   console.log(this.userID);
-      //   console.log(this.decodedToken);
-      //   this.userIdURL = this.decodedToken?.userId;
-      //   this.userToken = JSON.stringify(userResponse[0][1]);
-      //   console.log(this.decodedToken);
-      //   return this.userToken;
-      // }
-      // if (response.state === 1) {
-      //   localStorage.setItem('token', JSON.stringify(response.data));
-      //   this.userToken = JSON.stringify(response.data);
-      //   return this.userToken;
-      // } else {
-      //   return response;
-      // }
+      const tokenResponse = response.token;
+      console.log(tokenResponse);
+      if (tokenResponse) {
+        localStorage.setItem('school_token', tokenResponse);
+        this.decodedToken = this.jwtHelper.decodeToken(tokenResponse);
+        console.log(this.decodedToken);
+        this.studentName = this.decodedToken.unique_name;
+        this.studentId = this.decodedToken.nameid;
+        console.log(this.studentId);
+        console.log(this.studentName);
+        this.studentToken = tokenResponse;
+        return this.studentToken;
+      }
     }));
   }
 

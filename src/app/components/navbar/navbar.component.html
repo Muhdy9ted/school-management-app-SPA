@@ -44,7 +44,10 @@
                     <a class="btn nav-link btn-primary"  *ngIf="isLoggedIn()" [class.btn-sm]="isCollapsed" [class.mr-1]="isCollapsed" role="button" [routerLink]="['/account']" routerLinkActive="router-link-active" > 
                         Student Portal
                     </a>
-                    <a class="btn nav-link btn-primary" *ngIf="!isLoggedIn()"  (click)="loggedOut()" [class.btn-sm]="isCollapsed" [class.mr-1]="isCollapsed" role="button" [routerLink]="['/account']" routerLinkActive="router-link-active" > 
+                    <a class="btn nav-link btn-primary" *ngIf="!isLoggedIn()" [class.btn-sm]="isCollapsed" [class.mr-1]="isCollapsed" role="button" [routerLink]="['/dashboard', studentId]" routerLinkActive="router-link-active" > 
+                        Dashborad
+                    </a>
+                    <a class="btn nav-link btn-primary" *ngIf="!isLoggedIn()"  (click)="loggedOut()" [class.btn-sm]="isCollapsed" [class.mr-1]="isCollapsed" role="button"> 
                         Sign Out
                     </a>
                    
